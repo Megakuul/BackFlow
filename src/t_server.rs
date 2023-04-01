@@ -40,8 +40,7 @@ fn handle_connection(mut stream: TcpStream) -> Result<()> {
             break;
         }
 
-        println!("T_Server received {} bytes from {}: {}", bytes_read, stream.peer_addr()?, String::from_utf8_lossy(&buffer[..bytes_read]));
-        stream.write(format!("T_Server responded from {}: {}", stream.local_addr()?, "Wazzup").as_bytes());
+        stream.write(format!("T_Server response from {}: {}", stream.local_addr()?, String::from_utf8_lossy(&buffer[..bytes_read])).as_bytes());
     }
 
     Ok(())
